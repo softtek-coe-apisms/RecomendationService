@@ -8,6 +8,7 @@ namespace RecommendationService.Models
     public class PageDTO
     {
         public List<ProductDTO> Products { get; set; }
-        public int TotalItems { get; set; }
+        public int TotalProducts { get; set; }
+        public int TotalPages { get; set; }
     }
 }

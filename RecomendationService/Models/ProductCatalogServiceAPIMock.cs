@@ -26,7 +26,7 @@ namespace RecommendationService.Models
 
         public override PageDTO GetPage(int? pageNumber, string name)
         {
-            return new PageDTO { TotalItems = productDTOs.Count, Products = productDTOs };
+            return new PageDTO { TotalPages = 1, TotalProducts = productDTOs.Count, Products = productDTOs };
         }
     }
 }

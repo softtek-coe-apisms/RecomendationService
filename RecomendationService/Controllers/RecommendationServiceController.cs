@@ -40,7 +40,7 @@ namespace RecomendationService.Controllers
                 List<string> actualCategories = productsAPI.GetById(id).Categories;
 
                 //obtaining total pages
-                int totalPages = productsAPI.GetPage(1, "").TotalItems;
+                int totalPages = productsAPI.GetPage(1, "").TotalPages;
 
                 //Looking for products with similar categories
                 List<ProductDTO> recomendedProducts = new List<ProductDTO>();

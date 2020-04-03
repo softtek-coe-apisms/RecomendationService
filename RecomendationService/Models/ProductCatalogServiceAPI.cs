@@ -37,7 +37,7 @@ namespace RecommendationService.Models
         {
             if (pageNumber.HasValue)
             {
-                responseMessage = products.GetAsync(PRODUCTS_PAGE + 1);
+                responseMessage = products.GetAsync(PRODUCTS_PAGE + pageNumber.Value);
                 responseMessage.Wait();
                 return responseMessage.Result.Content.ReadAsAsync<PageDTO>().Result;
             }
