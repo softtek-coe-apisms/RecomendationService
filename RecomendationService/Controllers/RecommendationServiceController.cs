@@ -44,9 +44,10 @@ namespace RecomendationService.Controllers
 
                 //Looking for products with similar categories
                 List<ProductDTO> recomendedProducts = new List<ProductDTO>();
+                List<ProductDTO> actualPage = null;
                 while (totalPages > 0)
                 {
-                    List<ProductDTO> actualPage = productsAPI.GetPage(totalPages--, "").Products;
+                    actualPage = productsAPI.GetPage(totalPages--, "").Products;
                     List<ProductDTO> productsSameCategory = actualPage
                         .Select(p => new { likeness = Utilities.CompareStringLists(actualCategories, p.Categories), p })
                         .Where(an => an.p.Id != id && an.likeness > 0)
@@ -57,7 +58,9 @@ namespace RecomendationService.Controllers
                     recomendedProducts.AddRange(productsSameCategory);
                 }
 
-                return Ok(recomendedProducts);
+                if (recomendedProducts.Count > 0)
+                    return Ok(recomendedProducts);
+                return Ok(actualPage.Take(5));
             }
             catch (Exception e)
             {
